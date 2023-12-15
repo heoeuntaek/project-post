@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/index.css">
+    <script src="index.js"></script>
+</head>
+<style>
+
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+</style>
+<body>
+
+<div style="margin-top: 200px;  text-align: center;">
+
+</div>
+
+<div th:if="${#fields.hasGlobalErrors()}">
+    <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+</div>
+
+<form action="/users/new" role="form" th:object="${userDto}" method="post">
+    <div style="text-align: center;">
+        <p class="login">
+            ID <input type="text" th:field="*{loginId}">
+        </p>
+        <div class="field-error" th:errors="*{loginId}">
+            아이디 오류
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px">
+        <p class="login">
+            PW <input type="text" th:field="*{loginPw}">
+        </p>
+        <div class="field-error" th:errors="*{loginPw}">
+            비번 오류
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px">
+        <p class="login">
+            Nickname <input type="text" th:field="*{nickName}">
+        </p>
+        <div class="field-error" th:errors="*{nickName}">
+            닉네임 오류
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <input type="submit" value="가입완료"> </input>
+    </div>
+</form>
+
+
+</body>
+</html>

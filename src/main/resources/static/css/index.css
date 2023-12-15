@@ -1,0 +1,14 @@
+button {
+
+    margin: 10px 20px 20px 30px;
+    display: inline-block;
+}
+
+input {
+    height: 20px;
+    width: 150px;
+}
+
+.login{
+    font-size: 15px;
+}
