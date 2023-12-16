@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="fragment/bodyHeader :: bodyHeader"/>
+
+
+<div style="text-align: center;">
+    <div th:object="${postDto}">
+        <div class="div-margin" style="text-align: left;">
+            <input type="text" th:field="*{title}" disabled>
+        </div>
+
+        <div class="div-margin">
+            <table>
+                <tbody>
+                <tr class="table">
+                    <td th:text="'작성자 : '+${user.nickName}">작성자</td>
+                    <td th:text="'작성일자 : '+${postDto.time}">작성일</td>
+                    <td th:text="'조회수 :'">조회</td>
+                </tr>
+                </tbody>
+                <!--        style="padding: 20px;"-->
+
+            </table>
+        </div>
+
+        <div class="div-margin" style="text-align: left;">
+            <input style="width: 100%; height: 300px" type="text" th:field="*{content}" disabled>
+        </div>
+
+        <form method="post" th:action="@{'/posts/delete/'+${postDto.id}}">
+            <div style="text-align: right; position: relative;top: 30px;">
+                <button type="button" onclick="location.href='/posts'">뒤로가기</button>
+                <button type="button" th:onclick="|location.href='@{/posts/edit/{postId}(postId=${postId})}'|">수정</button>
+                <input type="submit" value="삭제">
+            </div>
+        </form>
+    </div>
+</div>
+</form>
+
+
+</div>
+
+</body>
+</html>

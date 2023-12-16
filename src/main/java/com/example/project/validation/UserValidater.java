@@ -1,4 +1,4 @@
-package com.example.project.controller.validation;
+package com.example.project.validation;
 
 import com.example.project.domain.User;
 import org.springframework.stereotype.Component;

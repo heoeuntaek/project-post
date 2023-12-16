@@ -11,7 +11,7 @@
 
 <div style="margin-top: 101px;  text-align: center;">
 </div>
-<form action="/posts/add" th:object="${postDto}" method="post">
+<form th:action="@{/posts/edit/{postId}(postId=${postId})}" th:object="${postDto}" method="post">
     <div style="text-align: left; margin-bottom: 10px">
         <input type="text" th:field="*{title}" placeholder="제목">
     </div>
@@ -20,8 +20,8 @@
     </div>
 
     <div style="text-align: right; position: relative;top: 30px;">
-        <button type="button" onclick="location.href='/posts'">글 목록으로</button>
-        <input type="submit" value="저장">
+        <button type="button" onclick="location.href='/'">뒤로가기</button>
+        <input type="submit" value="수정완료">
     </div>
 </form>
 

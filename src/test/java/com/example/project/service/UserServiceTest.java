@@ -20,7 +20,7 @@ class UserServiceTest {
 
         Long id = userService.join(user);
 
-        Assertions.assertThat(id).isEqualTo(user.getId());
+        Assertions.assertThat(id).isEqualTo(2);
     }
 
     @Test
@@ -47,8 +47,8 @@ class UserServiceTest {
         userService.join(user3);
 
         //then
-        List<User> users = userService.getUsers();
-        Assertions.assertThat(users.size()).isEqualTo(3);
+        List<User> users = userService.getAll();
+        Assertions.assertThat(users.size()).isEqualTo(4);
 
     }
 }

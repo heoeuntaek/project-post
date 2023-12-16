@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div style="margin-top: 50px;  text-align: center;">
+</div>
+<div th:replace="fragment/bodyHeader :: bodyHeader"/>
+
+
+<div style="margin-top: 30px;  text-align: center;">
+</div>
+<div>
+    <table style="margin-left:auto;margin-right:auto;">
+        <tr>
+            <th width="70px">no</th>
+            <th width="150px">user</th>
+            <th width="300px">title</th>
+            <th width="150px">time</th>
+        </tr>
+        <tr th:each="post : ${postDtos}">
+            <th> 1</th>
+            <th th:text="${user.nickName}"> 사과</th>
+            <th style="text-decoration: underline;">
+                <a th:href="@{/posts/{postId}(postId = ${post.id})}" th:text="${post.title}">제목</a>
+            </th>
+            <th th:text="${post.getTime()}"> 2023.11.24</th>
+
+        </tr>
+    </table>
+    <div style="text-align: right; padding-top: 250px">
+        <form>
+            <input type="text" name="" id="search">
+            <button type="button">검색</button>
+            <button type="button" onclick="location.href='/posts/add';">글쓰기</button>
+        </form>
+
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

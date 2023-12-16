@@ -1,8 +1,12 @@
 package com.example.project.controller;
 
+import com.example.project.SessionConst;
 import com.example.project.domain.User;
+import com.example.project.dto.LoginDto;
 import com.example.project.dto.UserDto;
 import com.example.project.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -30,19 +36,17 @@ public class UserController {
     public String createForm(Model model) {
         model.addAttribute("userDto", new UserDto());
         return "user/userJoinForm";
-
-
     }
 
     @PostMapping("/users/new")
-    public String create(@Validated @ModelAttribute UserDto userDto, BindingResult bindingResult) {
+    public String create(@Validated @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult) {
 //        특정 필드가 아닌 복합 룰 검증
 
 //        중복 회원검증
         User findOne = userService.findByLoginId(userDto.getLoginId());
         if (findOne != null) {
-            log.info("중복회원");
-            bindingResult.reject("user");
+            log.error("아이디 중복");
+            bindingResult.reject("user", "아이디 중복입니다");
             return "user/userJoinForm";
         }
 
@@ -79,4 +83,97 @@ public class UserController {
         UserDto userDto = user.toUserDto(user);
         return userDto;
     }
+
+    @GetMapping("/users")
+    public List<User> getAll() {
+        List<User> users = userService.getAll();
+        return users;
+
+    }
+
+    //로그인
+    @PostMapping("/login")
+    public String Login(@Validated @ModelAttribute LoginDto loginDto, BindingResult bindingResult,
+                        @RequestParam(name = "redirectURL", defaultValue = "/") String redirectURL, HttpServletRequest request) {
+
+
+        //ID, PW 검증
+        //ID Null 아닌지
+
+
+        User loginUser = userService.findByLoginId(loginDto.getLoginId());
+        if (loginUser == null) {
+            bindingResult.reject("id", "아이디가 없습니다");
+            return "loginForm";
+        }
+
+
+        //비번 검증
+        if (!loginUser.getLoginPw().equals(loginDto.getLoginPw())) {
+            bindingResult.reject("id", "비번이 틀렸습니다");
+            return "loginForm";
+        }
+
+        if (bindingResult.hasErrors()) {
+            log.error("err {}", bindingResult);
+            return "loginForm";
+        }
+
+        log.info("redirectURL {}", redirectURL);
+        //로그인 성공 처리
+        //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
+        HttpSession session = request.getSession();
+        //세션에 로그인 회원 정보 보관
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginUser);
+
+        return "redirect:" + redirectURL;
+
+    }
+
+    @GetMapping("/logout")
+    public String logoutV3(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
+
+    //    로그인
+    @GetMapping("/")
+    public String loginForm(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user, Model model) {
+
+        model.addAttribute("loginDto", new LoginDto());
+
+        if (user == null) {
+            return "loginForm";
+        }
+        model.addAttribute("user", user);
+        return "main";
+    }
+
+
+    @GetMapping("/users/edit")
+    public String editUserForm(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user, Model model) {
+        UserDto userDto = user.toUserDto(user);
+        model.addAttribute("userDto", userDto);
+
+        return "user/userUpdateForm";
+    }
+
+    @PostMapping("/users/edit")
+    public String editUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                           @ModelAttribute UserDto userDto, Model model) {
+
+        user.setLoginPw(userDto.getLoginPw());
+        user.setNickName(userDto.getNickName());
+
+        userService.update(user);
+
+        return "redirect:/";
+
+    }
+
+
 }
+

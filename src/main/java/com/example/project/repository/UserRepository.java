@@ -2,6 +2,7 @@ package com.example.project.repository;
 
 import com.example.project.domain.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +18,10 @@ public class UserRepository {
     private final EntityManager em;
 
 
-    public void save(User user) {
+    public void add(User user) {
+        log.error("3");
+
         em.persist(user);
-        log.info("user 생성 {}", user);
     }
 
     public User findById(Long id) {
@@ -27,15 +29,24 @@ public class UserRepository {
         return user;
     }
 
-    public List<User>getUsers(){
+    public List<User> getAll() {
         List<User> users = em.createQuery("select u from User u", User.class).getResultList();
         return users;
 
     }
 
-    public User findByLoginId(String loginId){
-        User user = em.createQuery("select u from User u where u.loginId=loginId", User.class).getResultList().getFirst();
-        return user;
+    public User findByLoginId(String loginId) {
+        try {
+            User user = em.createQuery("select u from User u where u.loginId = :loginId", User.class)
+                    .setParameter("loginId", loginId).getSingleResult();
+            return user;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 
+
+    public void update(User targetUser) {
+        em.merge(targetUser);
     }
 }

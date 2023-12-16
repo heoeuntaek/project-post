@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+
+</head>
+
+<style>
+
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+</style>
+<body>
+
+<div style="margin-top: 200px;  text-align: center;">
+
+
+    <form action="/login" th:object="${loginDto}" method="post">
+
+        <!--    글로벌 에러-->
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p style="text-align: center" class="field-error" th:each="error : ${#fields.globalErrors()}" th:text="${error}">글로벌 오류 메시지</p>
+        </div>
+
+
+        <div class="margin" style="text-align: center;">
+            ID <input type="text" th:field="*{loginId}">
+        </div>
+        <div class="margin" style="text-align: center; ">
+            PW <input type="text" th:field="*{loginPw}">
+        </div>
+
+        <div class="margin" style="text-align: center;">
+            <input type="submit" value="로그인"></input>
+            <button type="button" onclick="location.href='/users/new'">회원가입</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

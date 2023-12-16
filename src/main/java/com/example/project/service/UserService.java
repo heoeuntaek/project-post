@@ -18,9 +18,7 @@ public class UserService {
 
     @Transactional
     public Long join(User user) {
-
-//        validateDuplicateMember(member); //중복 회원 검증
-        userRepository.save(user);
+        userRepository.add(user);
         return user.getId();
     }
 
@@ -29,16 +27,19 @@ public class UserService {
         return user;
     }
 
-    public List<User>getUsers(){
-        List<User> users = userRepository.getUsers();
+    public List<User> getAll(){
+        List<User> users = userRepository.getAll();
         return users;
     }
 
     public User findByLoginId(String loginId){
-        User user = userRepository.findByLoginId(loginId);
+        User user =  userRepository.findByLoginId(loginId);
         return user;
     }
 
 
-
+    @Transactional
+    public void update(User user) {
+        userRepository.update(user);
+    }
 }

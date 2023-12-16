@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
-    <script src="index.js"></script>
 </head>
 <style>
 
@@ -21,7 +20,7 @@
 
 
 
-<form action="/users/new" role="form" th:object="${userDto}" method="post">
+<form action="/users/edit" role="form" th:object="${userDto}" method="post">
 
 <!--    글로벌 에러-->
     <div style="text-align: center" th:if="${#fields.hasGlobalErrors()}">
@@ -29,14 +28,7 @@
     </div>
 
 <!--    필드 에러-->
-    <div style="text-align: center;">
-        <p class="login">
-            ID <input type="text" th:field="*{loginId}">
-        </p>
-        <div class="field-error" th:errors="*{loginId}">
-            아이디 오류
-        </div>
-    </div>
+
     <div style="text-align: center; margin-top: 20px">
         <p class="login">
             PW <input type="text" th:field="*{loginPw}">
@@ -56,8 +48,8 @@
 
 
     <div style="text-align: center;">
-        <button type="button" onclick="location.href='/login'">뒤로가기 </button>
-        <input type="submit" value="가입완료"> </input>
+        <button type="button" onclick="location.href='/'">뒤로가기 </button>
+        <input type="submit" value="수정완료"> </input>
     </div>
 </form>
 

@@ -1,0 +1,28 @@
+input, button {
+
+    /*margin: 0px 20px 10px 0px;*/
+    display: inline-block;
+    height: 30px;
+    width: 100px;
+}
+
+table, th, td {
+    border-collapse: collapse;
+}
+
+.margin{
+/*//상하우좌*/
+    margin:  20px 20px 20px 20px;
+}
+.table td{
+    padding-right: 20px;
+}
+
+.div-margin{
+    padding-left: 100px ;
+    padding-right: 100px;
+}
+
+div{
+    margin-bottom: 15px;
+}
