@@ -4,10 +4,13 @@
 
 <div th:fragment="bodyHeader">
     <div style="text-align: right; margin-bottom: 20px">
-        <span th:text="'로그인 : '+${user.nickName}">~님 환영합니다</span>
+        <span th:if="${userDto.loginId} != a"
+              th:text="'로그인 : '+${userDto.nickName}">~님 환영합니다</span>
+        <span th:if="${userDto.loginId} == a"
+              th:text="'로그인 : '+${userDto.nickName}+ '(관리자)'">~님 환영합니다</span>
     </div>
     <div style="text-align: right; margin-right: 15px">
-        <button type="button" onclick="location.href='/';">메인으로</button>
+        <button type="button" onclick="location.href='/'">메인으로</button>
         <button type="button" onclick="location.href='/logout'">로그아웃</button>
     </div>
 </div>

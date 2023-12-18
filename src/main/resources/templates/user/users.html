@@ -14,20 +14,25 @@
 <div style="margin-top: 30px;  text-align: center;">
 </div>
 <div>
-    <table style="margin-left:auto;margin-right:auto;">
+    <table class="border" style="margin-left:auto;margin-right:auto; ">
         <tr>
-            <th width="70px">no</th>
-            <th width="150px">user</th>
-            <th width="300px">title</th>
-            <th width="150px">time</th>
+            <th width="70px">Id</th>
+            <th width="150px">LoginId</th>
+            <th width="300px">LoginPd</th>
+            <th width="150px">Nickname</th>
+            <th scope="col">Actions</th>
         </tr>
-        <tr th:each="post : ${postDtos}">
-            <th> 1</th>
-            <th th:text="${post.user.nickName}"> 사과</th>
+        <tr th:each="user : ${userDtos}">
+            <th th:text="${user.id}">Id</th>
+            <th th:text="${user.loginId}">LoginId</th>
+            <th th:text="${user.loginPw}">LoginPd</th>
+            <th th:text="${user.nickName}"> Nickname</th>
             <th style="text-decoration: underline;">
-                <a th:href="@{/posts/{postId}(postId = ${post.id})}" th:text="${post.title}">제목</a>
+                <a href="#" th:href="@{/users/delete/{id}(id=${user.id})}">삭제</a>
+
+<!--                <a href="#" th:href="'/users/delete/'+${user.id}">삭제</a>-->
             </th>
-            <th th:text="${post.getTime()}"> 2023.11.24</th>
+
 
         </tr>
     </table>

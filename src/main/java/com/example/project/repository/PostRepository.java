@@ -13,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Repository
 @Slf4j
-@ToString
 public class PostRepository {
     private final EntityManager em;
 
@@ -40,12 +39,13 @@ public class PostRepository {
         findPost.setContent(postDto.getContent());
     }
 
-    public void deleteByPostId(Long postId, Long userId) {
-        log.error("postId {}",postId);
-        em.createQuery("delete from Post p where p.id=:postId and p.user.id =:userId")
-                .setParameter("postId", postId)
-                .setParameter("userId", userId)
-                .executeUpdate();
-        log.error("2");
+    public void deleteByPostId(Long postId) {
+        Post post = em.find(Post.class, postId);
+        em.remove(post);
+
+//        em.createQuery("delete from Post p where p.id=:postId and p.user.id =:userId")
+//                .setParameter("postId", postId)
+//                .setParameter("userId", userId)
+//                .executeUpdate();
     }
 }

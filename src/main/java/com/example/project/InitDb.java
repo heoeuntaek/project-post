@@ -49,6 +49,11 @@ public class InitDb {
             post.setContent("안녕하세요 제 이름은 푸른 밤이에요. 날이 점점 어두워져 가네요. 제 마음도 어두워져 가네요.");
             post.setTime(LocalDateTime.now());
 
+            //파일 첨부
+            String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
+            post.setFilePath(projectPath);
+            post.setFileName("860fd6b9-b4fa-4403-9f51-1f46e9b859ef_자유2.txt");
+
             em.persist(post);
 
 

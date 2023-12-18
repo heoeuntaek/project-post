@@ -1,6 +1,7 @@
 package com.example.project.repository;
 
 import com.example.project.domain.User;
+import com.example.project.dto.UserDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Repository
 @Slf4j
-@ToString
 public class UserRepository {
     private final EntityManager em;
 
@@ -46,7 +46,15 @@ public class UserRepository {
     }
 
 
-    public void update(User targetUser) {
-        em.merge(targetUser);
+    public void update(UserDto userDto, Long id) {
+        User findUser = em.find(User.class, id);
+        findUser.setNickName(userDto.getNickName());
+        findUser.setLoginPw(userDto.getLoginPw());
+
+    }
+
+    public void deleteById(Long id) {
+        User user = em.find(User.class, id);
+        em.remove(user);
     }
 }

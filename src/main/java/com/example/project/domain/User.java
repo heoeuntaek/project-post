@@ -16,7 +16,8 @@ import static jakarta.persistence.FetchType.LAZY;
 @Table
 @Entity
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue
@@ -27,14 +28,18 @@ public class User {
     private String loginPw;
     private String nickName;
 
-    @OneToMany(mappedBy = "user",fetch = EAGER)
+    @OneToMany(mappedBy = "user", fetch = EAGER)
     private List<Post> posts = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", fetch = EAGER)
     private List<Comment> comments = new ArrayList<>();
 
-    public UserDto toUserDto(User user){
+    public UserDto toUserDto(User user) {
         UserDto userDto = new UserDto();
+        if (user.getId() != null) {
+            userDto.setId(user.getId());
+        }
+
         userDto.setLoginId(user.getLoginId());
         userDto.setLoginPw(user.getLoginPw());
         userDto.setNickName(user.getNickName());

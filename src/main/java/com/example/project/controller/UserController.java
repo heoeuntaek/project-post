@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -85,9 +86,24 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> getAll() {
+    public String getUsers(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                           Model model) {
         List<User> users = userService.getAll();
-        return users;
+        List<UserDto> userDtos = users.stream().
+                map(mapUser -> {
+                    UserDto userDto = new UserDto();
+                    userDto.setId(mapUser.getId());
+                    userDto.setLoginId((mapUser.getLoginId()));
+                    userDto.setLoginPw(mapUser.getLoginPw());
+                    userDto.setNickName(mapUser.getNickName());
+                    return userDto;
+                }).collect(Collectors.toList());
+
+        model.addAttribute("userDtos", userDtos);
+
+        UserDto userDto = user.toUserDto(user);
+        model.addAttribute("userDto", userDto);
+        return "user/users";
 
     }
 
@@ -148,7 +164,9 @@ public class UserController {
         if (user == null) {
             return "loginForm";
         }
-        model.addAttribute("user", user);
+
+        UserDto userDto = user.toUserDto(user);
+        model.addAttribute("userDto", userDto);
         return "main";
     }
 
@@ -158,22 +176,31 @@ public class UserController {
         UserDto userDto = user.toUserDto(user);
         model.addAttribute("userDto", userDto);
 
-        return "user/userUpdateForm";
+        return "user/userEditForm";
     }
 
     @PostMapping("/users/edit")
     public String editUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
-                           @ModelAttribute UserDto userDto, Model model) {
+                           @ModelAttribute UserDto userDto) {
 
-        user.setLoginPw(userDto.getLoginPw());
-        user.setNickName(userDto.getNickName());
 
-        userService.update(user);
+        userService.update(userDto, user.getId());
 
         return "redirect:/";
 
     }
 
+    @GetMapping("/users/delete/{userId}")
+    public String deleteUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                             @PathVariable("userId") Long id, Model model) {
+        log.error("error");
+        userService.delete(id);
 
+        UserDto userDto = user.toUserDto(user);
+        model.addAttribute("userDto", userDto);
+        return "redirect:/users";
+
+
+    }
 }
 

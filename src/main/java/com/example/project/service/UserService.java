@@ -1,6 +1,7 @@
 package com.example.project.service;
 
 import com.example.project.domain.User;
+import com.example.project.dto.UserDto;
 import com.example.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,12 @@ public class UserService {
 
 
     @Transactional
-    public void update(User user) {
-        userRepository.update(user);
+    public void update(UserDto userDto, Long id) {
+        userRepository.update(userDto, id);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 }

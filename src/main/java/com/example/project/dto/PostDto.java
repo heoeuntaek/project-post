@@ -1,5 +1,6 @@
 package com.example.project.dto;
 
+import com.example.project.domain.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -22,4 +23,9 @@ public class PostDto {
     private String content;
 
     private LocalDateTime time;
+
+    private User user;
+
+    private String fileName;
+    private String filePath;
 }

@@ -26,3 +26,7 @@ table, th, td {
 div{
     margin-bottom: 15px;
 }
+
+.border, .border tr, .border tr th{
+    border : 1px solid black;
+}

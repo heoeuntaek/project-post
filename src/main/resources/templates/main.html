@@ -30,7 +30,9 @@
         <button type="button" onclick="location.href='/users/edit'">회원관리</button>
     </div>
     <div>
-        <button type="button">관리자페이지</button>
+        <button th:if="${userDto.loginId} == a"
+                type="button" onclick="location.href='/users'">관리자페이지
+        </button>
     </div>
 </div>
 
