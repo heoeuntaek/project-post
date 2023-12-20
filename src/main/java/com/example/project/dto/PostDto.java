@@ -1,15 +1,15 @@
 package com.example.project.dto;
 
+import com.example.project.domain.Comment;
 import com.example.project.domain.User;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Getter @Setter
@@ -28,4 +28,6 @@ public class PostDto {
 
     private String fileName;
     private String filePath;
+
+    private List<Comment> comments = new ArrayList<>();
 }

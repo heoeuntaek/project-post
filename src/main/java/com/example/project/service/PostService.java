@@ -35,9 +35,7 @@ public class PostService {
         File saveFile = new File(projectPath, fileName);
         file.transferTo(saveFile);//parent -경로, child - name
 
-        post.setFileName(fileName);
-        post.setFilePath(projectPath);
-
+        post.setFile(fileName, projectPath);
 
 
         postRepository.add(post);
@@ -62,8 +60,10 @@ public class PostService {
     }
 
     @Transactional
-    public void deleteByPostId(Long postId){
+    public void deleteById(Long postId){
         postRepository.deleteByPostId(postId);
     }
+
+
 
 }

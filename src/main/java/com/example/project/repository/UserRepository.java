@@ -5,7 +5,6 @@ import com.example.project.dto.UserDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -48,8 +47,7 @@ public class UserRepository {
 
     public void update(UserDto userDto, Long id) {
         User findUser = em.find(User.class, id);
-        findUser.setNickName(userDto.getNickName());
-        findUser.setLoginPw(userDto.getLoginPw());
+        findUser.update(userDto);
 
     }
 

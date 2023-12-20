@@ -35,8 +35,35 @@
             <input style="width: 100%; height: 300px" type="text" th:field="*{content}" disabled>
         </div>
 
+        <div class="div-margin" style="text-align: left">
+            댓글 <span th:text="${commentCount}">댓글개수</span>
 
-        <form method="post" th:action="@{'/posts/delete/'+${postDto.id}}">
+            <form th:action="@{'/comments/add/'+${postDto.id}}" method="post">
+                <input style="width: 700px" th:name="content" placeholder="댓글">
+                <input type="submit" value="저장">
+            </form>
+            <!--            여기서부터 댓글 목록-->
+            <!--            댓글-->
+            <!--            userDto.nickName-->
+            <!--            content  postDto.날짜-->
+            <!--            postDto.getComments ->해서리스트-->
+            <table class="table">
+                <tr th:each="commentDto :${commentDtos}">
+                    <th style="padding-right: 50px" th:text="${'['+commentDto.getUser().getNickName()+']'}">닉네임</th>
+                    <th style="padding-right: 200px; font-weight : initial; " th:text="${commentDto.getContent()}"> content</th>
+                    <th style="font-weight : initial; " th:text="${commentDto.getTime()}">날짜</th>
+                    <th th:if="${(userDto.id==commentDto.user.id) || (userDto.loginId=='a')}"><a th:href="@{'/comments/delete/'+${commentDto.id}}">삭제</a></th>
+                </tr>
+
+
+
+            </table>
+
+        </div>
+
+
+        <form method=">post
+                </tr>" th:action="@{'/posts/delete/'+${postDto.id}}">
             <div style="text-align: right; position: relative;top: 30px;">
                 <button type="button" onclick="location.href='/posts'">뒤로가기</button>
                 <button th:if="${userDto.id} == ${postDto.user.id}"
@@ -46,11 +73,6 @@
                        th:if="${userDto.id == postDto.user.id} or ${userDto.loginId == 'a'}">
             </div>
         </form>
-        <div class="div-margin" style="text-align: left">
-         댓글
-        </div>
-
-
 
 
     </div>

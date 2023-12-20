@@ -58,10 +58,8 @@ public class UserController {
         }
 
 
-        User user = new User();
-        user.setLoginId(userDto.getLoginId());
-        user.setLoginPw(userDto.getLoginPw());
-        user.setNickName(userDto.getNickName());
+        User user = new User(null, userDto.getLoginId(), userDto.getLoginPw(),
+                userDto.getNickName(), null, null);
 
         userService.join(user);
         log.info("user join success {}", userDto);
@@ -182,7 +180,6 @@ public class UserController {
     @PostMapping("/users/edit")
     public String editUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                            @ModelAttribute UserDto userDto) {
-
 
         userService.update(userDto, user.getId());
 

@@ -1,15 +1,15 @@
 package com.example.project.controller;
 
 import com.example.project.SessionConst;
+import com.example.project.domain.Comment;
 import com.example.project.domain.Post;
 import com.example.project.domain.User;
+import com.example.project.dto.CommentDto;
 import com.example.project.dto.PostDto;
 import com.example.project.dto.UserDto;
 import com.example.project.service.PostService;
-
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,20 +42,18 @@ public class PostController {
     }
 
     @PostMapping("/posts/add")
-    public String addPost(@Validated @ModelAttribute PostDto postDto,
+    public String addPost(@Validated @ModelAttribute("postDto") PostDto postDto,
                           @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
-                          BindingResult bindingResult, @RequestParam("file") MultipartFile file) throws IOException {
+                          BindingResult bindingResult, @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
 
         if (bindingResult.hasErrors()) {
             log.info("errors={} ", bindingResult);
             return "post/postForm";
         }
 
-        Post post = new Post();
-        post.setTitle(postDto.getTitle());
-        post.setContent(postDto.getContent());
+        Post post = new Post(null, postDto.getTitle(), postDto.getContent(), null,
+                LocalDateTime.now(), null, null, null, null);
         post.setUser(user);
-        post.setTime(LocalDateTime.now());
 
         postService.add(post, file);
 
@@ -63,8 +61,8 @@ public class PostController {
     }
 
     @GetMapping("/posts/{postId}")
-    public String getPost(Model model, @PathVariable("postId") Long postId,
-                          @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user) {
+    public String getOne(Model model, @PathVariable("postId") Long postId,
+                         @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user) {
 
         Post post = postService.findById(postId);
         PostDto postDto = post.toDto(post);
@@ -74,6 +72,19 @@ public class PostController {
         UserDto userDto = user.toUserDto(user);
         model.addAttribute("userDto", userDto);
 
+        List<Comment> comments = postDto.getComments();
+        //List<Comment>를 List<CommentDto>로
+
+        List<CommentDto> commentDtos = comments.stream().map(comment ->
+        {
+            CommentDto commentDto = comment.toDto();
+            return commentDto;
+        }).collect(Collectors.toList());
+
+        model.addAttribute("commentDtos", commentDtos);
+
+        int commentCount = comments.size();
+        model.addAttribute("commentCount", commentCount);
         return "post/getPost";
     }
 
@@ -107,7 +118,7 @@ public class PostController {
 
 
     @GetMapping("/posts")
-    public String getPosts(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user, Model model) {
+    public String getAll(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user, Model model) {
 
         List<Post> posts = postService.getAll();
 
@@ -134,7 +145,7 @@ public class PostController {
     @PostMapping("/posts/delete/{postId}")
     public String deletePost(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                              @PathVariable("postId") Long postId) {
-        postService.deleteByPostId(postId);
+        postService.deleteById(postId);
         return "redirect:/posts";
     }
 

@@ -1,11 +1,15 @@
 package com.example.project.dto;
 
 
-import com.example.project.domain.User;
+import com.example.project.domain.Comment;
+import com.example.project.domain.Post;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Getter @Setter
@@ -22,7 +26,9 @@ public class UserDto {
     @NotEmpty
     private String nickName;
 
+    private List<Post> posts;
 
+    private List<Comment> comments = new ArrayList<>();
 
 
 }

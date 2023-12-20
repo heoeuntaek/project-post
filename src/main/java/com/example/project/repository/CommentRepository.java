@@ -15,6 +15,7 @@ public class CommentRepository {
 
     private final EntityManager em;
     public void add(Comment comment) {
+        log.error("3");
         em.persist(comment);
     }
 
@@ -32,7 +33,6 @@ public class CommentRepository {
     public void deleteById(Long id) {
         Comment comment = em.find(Comment.class, id);
         em.remove(comment);
-
     }
 
 }

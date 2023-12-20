@@ -4,7 +4,6 @@ import com.example.project.domain.Post;
 import com.example.project.dto.PostDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -35,8 +34,8 @@ public class PostRepository {
     public void edit(PostDto postDto, Long id) {
         Post findPost = em.find(Post.class, id);
 
-        findPost.setTitle(postDto.getTitle());
-        findPost.setContent(postDto.getContent());
+        findPost.edit(postDto);
+
     }
 
     public void deleteByPostId(Long postId) {
@@ -48,4 +47,6 @@ public class PostRepository {
 //                .setParameter("userId", userId)
 //                .executeUpdate();
     }
+
+
 }

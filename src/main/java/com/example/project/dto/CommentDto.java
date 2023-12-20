@@ -3,7 +3,6 @@ package com.example.project.dto;
 import com.example.project.domain.Comment;
 import com.example.project.domain.Post;
 import com.example.project.domain.User;
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,11 +22,8 @@ public class CommentDto {
     private Post post;
 
     public Comment toComment() {
-        Comment comment = new Comment();
-        comment.setId(this.getId());
-        comment.setContent(this.getContent());
+        Comment comment = new Comment(this.getId(), this.getContent(), this.getTime(),null, null);
         comment.setUser(this.getUser());
-        comment.setTime(this.getTime());
         comment.setPost(this.getPost());
         return comment;
     } 

@@ -28,13 +28,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+	implementation 'com.h2database:h2'
 
 
 	// Lombok: 간편한 Java 코드 생성을 위한 라이브러리
 	compileOnly 'org.projectlombok:lombok'
 
 	// MySQL JDBC 드라이버
-//	runtimeOnly 'com.mysql.cj:mysql-connector-java'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 

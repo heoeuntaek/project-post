@@ -5,14 +5,10 @@ import com.example.project.domain.User;
 import com.example.project.service.UserService;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
-import java.awt.print.Book;
 import java.time.LocalDateTime;
 
 
@@ -36,28 +32,23 @@ public class InitDb {
         private final UserService userService;
 
         public void dbInit1() {
-            User user = new User();
-            user.setLoginId("a");
-            user.setLoginPw("a");
-            user.setNickName("젤리");
-
+            User user = new User(null, "a", "a", "젤리", null, null);
             em.persist(user);
 
-            Post post = new Post();
-            post.setUser(user);
-            post.setTitle("가을이 푸른 밤");
-            post.setContent("안녕하세요 제 이름은 푸른 밤이에요. 날이 점점 어두워져 가네요. 제 마음도 어두워져 가네요.");
-            post.setTime(LocalDateTime.now());
+            User user2 = new User(null, "s", "s", "젤리양", null, null);
+            em.persist(user2);
+
+            String title = "가을이 푸른 밤";
+            String content = "안녕하세요 제 이름은 푸른 밤이에요. 날이 점점 어두워져 가네요. 제 마음도 어두워져 가네요.";
+            Post post = new Post(null, title, content, null, LocalDateTime.now(), null, null
+                    , user, null);
+
 
             //파일 첨부
-            String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
-            post.setFilePath(projectPath);
-            post.setFileName("860fd6b9-b4fa-4403-9f51-1f46e9b859ef_자유2.txt");
-
+            String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+            String fileName = "860fd6b9-b4fa-4403-9f51-1f46e9b859ef_자유2.txt";
+            post.setFile(fileName, projectPath);
             em.persist(post);
-
-
-
 
 
         }

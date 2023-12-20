@@ -1,12 +1,17 @@
 package com.example.project.controller;
 
+import com.example.project.SessionConst;
 import com.example.project.domain.Comment;
-import com.example.project.dto.CommentDto;
+import com.example.project.domain.Post;
+import com.example.project.domain.User;
 import com.example.project.service.CommentService;
+import com.example.project.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @Controller
 @RequiredArgsConstructor
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
 
     private final CommentService commentService;
+    private final PostService postService;
 
     @ResponseBody
     @GetMapping("/comments/{commentId}")
@@ -22,17 +28,26 @@ public class CommentController {
         return comment;
     }
 
-    @ResponseBody
-    @PostMapping("/comments/add")
-    public Comment addComment(@RequestParam("content") String content) {
-//        Comment comment = commentDto.toComment();
+    @PostMapping("/comments/add/{postId}")
+    public String addComment(@RequestParam("content") String content, @PathVariable("postId") Long postId,
+                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user) {
 
-        Comment comment = new Comment();
-        comment.setContent(content);
+        log.error("1");
+        Comment comment = new Comment(null, content, LocalDateTime.now(), null, null);
+        Post post = postService.findById(postId);
 
+        comment.setPost(post);
+        comment.setUser(user);
+
+        log.error("2");
         commentService.add(comment);
-        return comment;
-
-
+        return "redirect:/posts/"+postId;
     }
+
+    @GetMapping("/comments/delete/{commentId}")
+    public String deleteOne(@PathVariable("commentId")Long id){
+        commentService.deleteById(id);
+        return "redirect:/posts/" + id;
+    }
+
 }
