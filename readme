@@ -26,6 +26,6 @@
 1. 코드를 구현하는 시간이 2라면, 오류를 디버깅하고 해결하는 데 8이 걸렸다. 이를 통해 테스트 코드를 작성의 필요성을 느꼈다.
 2. 내가 겪은 대부분의 오류는 대소문자, 알파벳 1글자 차이 등 매우 단순한 오류들이었습니다. 이러한 실수를 방지하기 위해 코드를 작성할 때 세부적으로, 주의 깊게 하나하나 생각하면서 짜면 좋겠다는 생각이 들었다.
 
-![1login](https://github.com/heoeuntaek/project-post/assets/80875005/a7bd9993-49e4-45f3-9fda-7779d46435e6)
+<image src= "https://github.com/heoeuntaek/project-post/assets/80875005/a7bd9993-49e4-45f3-9fda-7779d46435e6"
 
 
