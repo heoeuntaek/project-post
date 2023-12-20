@@ -26,6 +26,6 @@
 1. 코드를 구현하는 시간이 2라면, 오류를 디버깅하고 해결하는 데 8이 걸렸다. 이를 통해 테스트 코드를 작성의 필요성을 느꼈다.
 2. 내가 겪은 대부분의 오류는 대소문자, 알파벳 1글자 차이 등 매우 단순한 오류들이었습니다. 이러한 실수를 방지하기 위해 코드를 작성할 때 세부적으로, 주의 깊게 하나하나 생각하면서 짜면 좋겠다는 생각이 들었다.
 
-https://private-user-images.githubusercontent.com/80875005/291897985-9ca9c6bf-4768-472e-8655-08c6eb629dff.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDMwNzc0MTUsIm5iZiI6MTcwMzA3NzExNSwicGF0aCI6Ii84MDg3NTAwNS8yOTE4OTc5ODUtOWNhOWM2YmYtNDc2OC00NzJlLTg2NTUtMDhjNmViNjI5ZGZmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMjAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjIwVDEyNTgzNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWVmZDIyZDQ3ZDNkZmViYTE0YmRkMDZmMDcxZWM3ZjVlMzY0MTUxODM0YjZlZDdhNjQ0MTJmMDU1MzhiNTM0M2ImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.FIjbbYc_XW4aYVx6rAdgykE_yYg_PHpukezVCoMbV1o
+![1login](https://github.com/heoeuntaek/project-post/assets/80875005/9ca9c6bf-4768-472e-8655-08c6eb629dff)
 
 
