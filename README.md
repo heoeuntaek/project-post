@@ -26,13 +26,14 @@
 1. 코드를 구현하는 시간이 2라면, 오류를 디버깅하고 해결하는 데 8이 걸렸다. 이를 통해 테스트 코드를 작성의 필요성을 느꼈다.
 2. 내가 겪은 대부분의 오류는 대소문자, 알파벳 1글자 차이 등 매우 단순한 오류들이었습니다. 이러한 실수를 방지하기 위해 코드를 작성할 때 세부적으로, 주의 깊게 하나하나 생각하면서 짜면 좋겠다는 생각이 들었다.
 
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/f6c47d07-df63-4fbc-be7f-b18a83ee54ef.png"/>
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/91569781-6d56-4232-98be-38916e8d827f.png"/>
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/a4dad6ef-0399-4ca2-ad45-9112eacdb189.png"/>
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/e412058a-119f-4a34-86f5-de2287a42a06.png"/>
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/2fa0f496-ba4c-4578-8eec-ba50e8d477a5.png"/>
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/002e47e8-f51e-4b98-94a4-e352f758f139.png"/>
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/618a936b-f636-4652-9bbe-bb65ede5117c.png"/>
-<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/d989fb68-0982-4aa2-a36b-e752d626c2ba.png"/>
+![1login](https://github.com/heoeuntaek/project-post/assets/80875005/1c4ea3e5-9878-466d-80ed-4fdd235864d1)
+![회원가입2](https://github.com/heoeuntaek/project-post/assets/80875005/ba312ce5-b0b5-42ce-b1ae-d2125a8cf15f)
+![메인3](https://github.com/heoeuntaek/project-post/assets/80875005/83c9d753-c03b-4ebd-92d5-94d36310da5e)
+![게시판 글쓰기4](https://github.com/heoeuntaek/project-post/assets/80875005/e0bdd44e-5558-4dad-93aa-abc0c62d29df)
+![게시판5](https://github.com/heoeuntaek/project-post/assets/80875005/07243caf-817d-49ca-ac04-d7f49a60a407)
+![게시판조회6](https://github.com/heoeuntaek/project-post/assets/80875005/2cf53274-63b4-47a0-a576-5be341e6fe5a)
+![회원수정7](https://github.com/heoeuntaek/project-post/assets/80875005/87ba1c69-7184-44fb-b35d-3c5ebc7a83ef)
+![관리자 페이지8](https://github.com/heoeuntaek/project-post/assets/80875005/fecf4842-62f1-442d-b205-592035d39d61)
+
 
 
