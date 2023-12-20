@@ -27,7 +27,7 @@
             <th style="text-decoration: underline;">
                 <a th:href="@{/posts/{postId}(postId = ${post.id})}" th:text="${post.title}">제목</a>
             </th>
-            <th th:text="${post.getTime()}"> 2023.11.24</th>
+            <th th:text="${#temporals.format(post.getTime(), 'yyyy-MM-dd HH:mm')}"> 2023.11.24</th>
 
         </tr>
     </table>

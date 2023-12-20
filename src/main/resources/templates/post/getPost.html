@@ -20,7 +20,9 @@
                 <tbody>
                 <tr class="table">
                     <td th:text="'작성자 : '+${userDto.nickName}">작성자</td>
-                    <td th:text="'작성일자 : '+${postDto.time}">작성일</td>
+                    <td th:text="'작성일자 : '+${#temporals.format(postDto.time, 'yyyy-MM-dd HH:mm')}">작성일</td>
+
+
                     <td th:text="'조회수 :'">조회</td>
                 </tr>
                 </tbody>
@@ -51,9 +53,11 @@
                 <tr th:each="commentDto :${commentDtos}">
                     <th style="padding-right: 50px" th:text="${'['+commentDto.getUser().getNickName()+']'}">닉네임</th>
                     <th style="padding-right: 200px; font-weight : initial; " th:text="${commentDto.getContent()}"> content</th>
-                    <th style="font-weight : initial; " th:text="${commentDto.getTime()}">날짜</th>
+                    <th style="font-weight : initial; " th:text="${#temporals.format(commentDto.getTime(), 'yyyy-MM-dd HH:mm')}">날짜</th>
                     <th th:if="${(userDto.id==commentDto.user.id) || (userDto.loginId=='a')}"><a th:href="@{'/comments/delete/'+${commentDto.id}}">삭제</a></th>
                 </tr>
+
+
 
 
 

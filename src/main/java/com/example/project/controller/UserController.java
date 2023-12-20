@@ -108,7 +108,7 @@ public class UserController {
     //로그인
     @PostMapping("/login")
     public String Login(@Validated @ModelAttribute LoginDto loginDto, BindingResult bindingResult,
-                        @RequestParam(name = "redirectURL", defaultValue = "/") String redirectURL, HttpServletRequest request) {
+                        @RequestParam(name = "redirectURL", defaultValue = "") String redirectURL, HttpServletRequest request) {
 
 
         //ID, PW 검증
@@ -140,7 +140,11 @@ public class UserController {
         //세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginUser);
 
-        return "redirect:" + redirectURL;
+        log.error("redirectURL ={}",redirectURL);
+        return "redirect:/" + redirectURL;
+//        return "redirect:" + redirectURL;
+
+//        redirect:/posts
 
     }
 
