@@ -1,0 +1,21 @@
+글쓰기, 댓글, 파일 첨부 기능 게시판
+
+
+
+- **기간** 2023.12.15~
+
+
+- 기능
+1. `BindingResult` ,`@Validated` 를 활용해 로그인, 회원가입 구현
+2. `Interceptor` , `@SessionAttribute` 를 활용해 로그인 검증
+3. `JPA` ,`MySQL`를 활용해 데이터 CRUD 구현
+4. `Thymeleaf` 를 활용해 HTML 동적 렌더링
+
+- 예정기능
+1. 친구 추가 기능 구현
+2. 채팅 기능 구현
+
+
+1. `BindingResult` 활용
+2. `Interceptor` 활용
+3. `Thymeleaf`  활용
