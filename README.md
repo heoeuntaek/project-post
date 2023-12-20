@@ -26,7 +26,13 @@
 1. 코드를 구현하는 시간이 2라면, 오류를 디버깅하고 해결하는 데 8이 걸렸다. 이를 통해 테스트 코드를 작성의 필요성을 느꼈다.
 2. 내가 겪은 대부분의 오류는 대소문자, 알파벳 1글자 차이 등 매우 단순한 오류들이었습니다. 이러한 실수를 방지하기 위해 코드를 작성할 때 세부적으로, 주의 깊게 하나하나 생각하면서 짜면 좋겠다는 생각이 들었다.
 
-![1login](https://github.com/heoeuntaek/project-post/assets/80875005/9ca9c6bf-4768-472e-8655-08c6eb629dff)
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/f6c47d07-df63-4fbc-be7f-b18a83ee54ef.png"/>
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/91569781-6d56-4232-98be-38916e8d827f.png"/>
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/a4dad6ef-0399-4ca2-ad45-9112eacdb189.png"/>
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/e412058a-119f-4a34-86f5-de2287a42a06.png"/>
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/2fa0f496-ba4c-4578-8eec-ba50e8d477a5.png"/>
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/002e47e8-f51e-4b98-94a4-e352f758f139.png"/>
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/618a936b-f636-4652-9bbe-bb65ede5117c.png"/>
+<img width="80%" src="https://github.com/heoeuntaek/project-post/raw/main/assets/80875005/d989fb68-0982-4aa2-a36b-e752d626c2ba.png"/>
 
 
-<img src="https://private-user-images.githubusercontent.com/80875005/291897985-9ca9c6bf-4768-472e-8655-08c6eb629dff.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDMwNzc1NzAsIm5iZiI6MTcwMzA3NzI3MCwicGF0aCI6Ii84MDg3NTAwNS8yOTE4OTc5ODUtOWNhOWM2YmYtNDc2OC00NzJlLTg2NTUtMDhjNmViNjI5ZGZmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMjAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjIwVDEzMDExMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZjYThjZDBlNWQwNzZjODEyNmU5OGZiNjgwNTcwZjUyYTNiNzg4YjdhNTI4MmMxYWE0MGM0MTk1ZjdkZGU2MGUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.uX-cxvTzHJeBdpxDPHWw-5-Q_0nFehudB2sVzhF1w9M"/>
