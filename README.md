@@ -30,10 +30,38 @@
 ![회원가입2](https://github.com/heoeuntaek/project-post/assets/80875005/ba312ce5-b0b5-42ce-b1ae-d2125a8cf15f)
 ![메인3](https://github.com/heoeuntaek/project-post/assets/80875005/83c9d753-c03b-4ebd-92d5-94d36310da5e)
 ![게시판 글쓰기4](https://github.com/heoeuntaek/project-post/assets/80875005/e0bdd44e-5558-4dad-93aa-abc0c62d29df)
-![게시판5](https://github.com/heoeuntaek/project-post/assets/80875005/07243caf-817d-49ca-ac04-d7f49a60a407)
+![게시판리스트](https://github.com/heoeuntaek/project-post/assets/80875005/4a4a96ed-8ddf-4b35-b3a8-f60da6497ce5)
 ![게시판조회6](https://github.com/heoeuntaek/project-post/assets/80875005/2cf53274-63b4-47a0-a576-5be341e6fe5a)
 ![회원수정7](https://github.com/heoeuntaek/project-post/assets/80875005/87ba1c69-7184-44fb-b35d-3c5ebc7a83ef)
 ![관리자 페이지8](https://github.com/heoeuntaek/project-post/assets/80875005/fecf4842-62f1-442d-b205-592035d39d61)
+
+231215
+로그인 세션 구현
+
+231216
+인터셉터 구현
+게시판 추가, 수정 구현
+회원 관리 구현(수정)
+게시판 삭제 구현
+UserController에서  return "main" 하면 css 적용 안됨 - css경로에 static 없애서 해결
+
+
+231218
+관리자 페이지 - 회원 삭제 구현
+게시글 삭제(관리자일때 모두, 아니면 자기것만)
+게시글 수정(자기것만)
+게시판 첨부 구현
+
+231219
+게시판 등록, 조회, 삭제 구현, 댓글 개수
+
+231220
+게시판 추가정보 "${#dates.format(post.time, 'yyyy-MM-dd HH:mm')}" 해결
+
+
+231221
+JPA 에서 Spring Data jpa로 변경
+페이징구현
 
 
 
