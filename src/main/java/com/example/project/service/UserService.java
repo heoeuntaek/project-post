@@ -8,44 +8,50 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+import java.util.Optional;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private  final UserRepository userRepository;
 
-    @Transactional
-    public Long join(User user) {
-        userRepository.add(user);
-        return user.getId();
+
+    @Transactional//            add
+    public void save(User user) {
+        userRepository.save(user);
     }
 
-    public User findById(Long id) {
-        User user = userRepository.findById(id);
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
+//            getAll
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findByLoginId(String loginId) {
+        User user = userRepository.findByLoginId(loginId).orElseThrow(
+                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다")
+        );
+
         return user;
     }
 
-    public List<User> getAll(){
-        List<User> users = userRepository.getAll();
-        return users;
-    }
-
-    public User findByLoginId(String loginId){
-        User user =  userRepository.findByLoginId(loginId);
-        return user;
-    }
-
-
     @Transactional
-    public void update(UserDto userDto, Long id) {
-        userRepository.update(userDto, id);
+    public void modify(UserDto userDto) {
+        User user = userRepository.findById(userDto.getId()).orElseThrow(() ->
+                new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+
+        user.update(userDto);
+
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
+
 }

@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import javax.swing.*;
+
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor
 {
@@ -31,3 +33,4 @@ public class LoginCheckInterceptor implements HandlerInterceptor
 
 
 }
+

@@ -16,19 +16,17 @@
 <body>
 
 <div style="margin-top: 200px;  text-align: center;">
-
+    <h1>회원가입</h1>
 </div>
-
-
 
 <form action="/users/new" role="form" th:object="${userDto}" method="post">
 
-<!--    글로벌 에러-->
+    <!--    글로벌 에러-->
     <div style="text-align: center" th:if="${#fields.hasGlobalErrors()}">
         <p class="field-error" th:each="error : ${#fields.globalErrors()}" th:text="${error}">글로벌 오류 메시지</p>
     </div>
 
-<!--    필드 에러-->
+    <!--    필드 에러-->
     <div style="text-align: center;">
         <p class="login">
             ID <input type="text" th:field="*{loginId}">
@@ -57,7 +55,7 @@
 
     <div style="text-align: center;">
         <input type="submit" value="가입완료"> </input>
-        <button type="button" onclick="location.href='/'">뒤로가기 </button>
+        <button type="button" onclick="location.href='/'">뒤로가기</button>
 
     </div>
 </form>

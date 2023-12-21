@@ -11,6 +11,7 @@
 
 <div style="margin-top: 101px;  text-align: center;">
 </div>
+
 <form action="/posts/add" th:object="${postDto}" method="post" enctype="multipart/form-data">
     <div style="text-align: left; margin-bottom: 10px">
         <input type="text" th:field="*{title}" placeholder="제목">

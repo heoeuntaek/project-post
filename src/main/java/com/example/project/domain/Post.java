@@ -68,18 +68,18 @@ public class Post {
 
 
 
-    public PostDto toDto(Post post) {
+    public PostDto toDto() {
         PostDto postDto = new PostDto();
-        if (post.getId() != null) {
-            postDto.setId(post.getId());
+        if (this.getId() != null) {
+            postDto.setId(this.getId());
         }
-        postDto.setContent(post.getContent());
-        postDto.setTitle(post.getTitle());
-        postDto.setTime(post.getTime());
-        postDto.setUser(post.getUser());
-        postDto.setFilePath(post.getFilePath());
-        postDto.setFileName(post.getFileName());
-        postDto.setComments(post.getComments());
+        postDto.setContent(this.getContent());
+        postDto.setTitle(this.getTitle());
+        postDto.setTime(this.getTime());
+        postDto.setUser(this.getUser());
+        postDto.setFilePath(this.getFilePath());
+        postDto.setFileName(this.getFileName());
+        postDto.setComments(this.getComments());
 
         return postDto;
 

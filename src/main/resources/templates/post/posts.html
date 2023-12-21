@@ -1,3 +1,4 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -12,6 +13,7 @@
 
 
 <div style="margin-top: 30px;  text-align: center;">
+    <h1>게시판</h1>
 </div>
 <div>
     <table style="margin-left:auto;margin-right:auto;">
@@ -22,7 +24,7 @@
             <th width="150px">time</th>
         </tr>
         <tr th:each="post : ${postDtos}">
-            <th> 1</th>
+            <th th:text="${post.id}">no</th>
             <th th:text="${post.user.nickName}"> 사과</th>
             <th style="text-decoration: underline;">
                 <a th:href="@{/posts/{postId}(postId = ${post.id})}" th:text="${post.title}">제목</a>
@@ -31,7 +33,27 @@
 
         </tr>
     </table>
-    <div style="text-align: right; padding-top: 250px">
+
+
+    <div class="pagination d-flex justify-content-center" style="padding-top: 30px">
+        <a class="page-link" th:if="${nowPage >=6}" th:href="@{/posts(page=${nowPage-5})}">Previous</a>
+
+        <th:block th:each="page: ${#numbers.sequence(startPage,endPage)}">
+            <a class="page-link" th:if="${page!= nowPage}" th:href="@{/posts(page = ${page-1})}" th:text="${page}"></a>
+            <strong class="page-link" th:if="${page ==nowPage}" th:text="${page}" style="color: red"></strong>
+        </th:block>
+
+        <a class="page-link" th:href="@{/posts(page=${nowPage+4})}">Next</a>
+
+    </div>
+
+
+    <!--    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+    <!--    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+    <!--    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+
+
+    <div style="text-align: right; padding-top: 150px">
         <form>
             <input type="text" name="" id="search">
             <button type="button">검색</button>

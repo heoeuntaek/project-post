@@ -16,18 +16,18 @@
 
 
 <div style="margin-top: 100px; text-align: center">
-
+<h1>메인 페이지</h1>
     <div>
         <button type="button" onclick="location.href='/posts'">게시판</button>
     </div>
+<!--    <div>-->
+<!--        <button type="button" disabled>채팅</button>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button type="button" disabled>친구관리</button>-->
+<!--    </div>-->
     <div>
-        <button type="button">채팅</button>
-    </div>
-    <div>
-        <button type="button">친구관리</button>
-    </div>
-    <div>
-        <button type="button" onclick="location.href='/users/edit'">회원관리</button>
+        <button type="button" th:onclick="|location.href='@{/users/edit}'|">회원수정</button>
     </div>
     <div>
         <button th:if="${userDto.loginId} == a"

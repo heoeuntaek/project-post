@@ -11,6 +11,10 @@ import com.example.project.service.PostService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -65,11 +69,11 @@ public class PostController {
                          @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user) {
 
         Post post = postService.findById(postId);
-        PostDto postDto = post.toDto(post);
+        PostDto postDto = post.toDto();
         model.addAttribute("postDto", postDto);
 
 
-        UserDto userDto = user.toUserDto(user);
+        UserDto userDto = user.toUserDto();
         model.addAttribute("userDto", userDto);
 
         List<Comment> comments = postDto.getComments();
@@ -117,25 +121,49 @@ public class PostController {
     }
 
 
+    ////    @GetMapping("/posts")
+//    public String getAll(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user, Model model) {
+//
+//        List<Post> posts = postService.getAll();
+//
+//        List<PostDto> postDtos = posts.stream().
+//                map(post -> {
+//                    PostDto postDto = new PostDto();
+//                    postDto.setId(post.getId());
+//                    postDto.setTitle(post.getTitle());
+//                    postDto.setTime(post.getTime());
+//                    postDto.setContent(post.getContent());
+//                    postDto.setUser(post.getUser());
+//                    return postDto;
+//                })
+//                .collect(Collectors.toList());
+//        model.addAttribute("postDtos", postDtos);
+//
+//        UserDto userDto = user.toUserDto();
+//        model.addAttribute("userDto", userDto);
+//        return "post/posts";
+//
+//    }
     @GetMapping("/posts")
-    public String getAll(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user, Model model) {
+    public String getAllV2(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                           Model model, @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Post> posts = postService.getAll(pageable);
 
-        List<Post> posts = postService.getAll();
+        int nowPage = posts.getPageable().getPageNumber()+1 ; //처음 페이지가 0
+        int startPage = nowPage;
+        int endPage = Math.min(nowPage + 5, posts.getTotalPages());
+
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         List<PostDto> postDtos = posts.stream().
                 map(post -> {
-                    PostDto postDto = new PostDto();
-                    postDto.setId(post.getId());
-                    postDto.setTitle(post.getTitle());
-                    postDto.setTime(post.getTime());
-                    postDto.setContent(post.getContent());
-                    postDto.setUser(post.getUser());
-                    return postDto;
-                })
-                .collect(Collectors.toList());
-        model.addAttribute("postDtos", postDtos);
+                    return post.toDto();
+                }).collect(Collectors.toList());
 
-        UserDto userDto = user.toUserDto(user);
+        model.addAttribute("postDtos", postDtos);
+        UserDto userDto = user.toUserDto();
         model.addAttribute("userDto", userDto);
         return "post/posts";
 

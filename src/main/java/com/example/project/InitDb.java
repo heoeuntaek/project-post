@@ -38,12 +38,16 @@ public class InitDb {
             User user2 = new User(null, "s", "s", "젤리양", null, null);
             em.persist(user2);
 
+
             String title = "가을이 푸른 밤";
             String content = "안녕하세요 제 이름은 푸른 밤이에요. 날이 점점 어두워져 가네요. 제 마음도 어두워져 가네요.";
             Post post = new Post(null, title, content, null, LocalDateTime.now(), null, null
                     , user, null);
 
-
+            for (int i = 0; i < 100; i++) {
+                em.persist(new Post(null, title+i, content+i, null, LocalDateTime.now(), null, null
+                        , user, null));
+            }
             //파일 첨부
             String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
             String fileName = "860fd6b9-b4fa-4403-9f51-1f46e9b859ef_자유2.txt";

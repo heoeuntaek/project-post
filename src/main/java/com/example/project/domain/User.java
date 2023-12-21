@@ -35,15 +35,15 @@ public class User {
 
 
 
-    public UserDto toUserDto(User user) {
+    public UserDto toUserDto() {
         UserDto userDto = new UserDto();
-        if (user.getId() != null) {
-            userDto.setId(user.getId());
+        if (this.getId() != null) {
+            userDto.setId(this.getId());
         }
 
-        userDto.setLoginId(user.getLoginId());
-        userDto.setLoginPw(user.getLoginPw());
-        userDto.setNickName(user.getNickName());
+        userDto.setLoginId(this.getLoginId());
+        userDto.setLoginPw(this.getLoginPw());
+        userDto.setNickName(this.getNickName());
         return userDto;
     }
 

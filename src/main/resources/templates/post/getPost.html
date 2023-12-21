@@ -58,16 +58,12 @@
                 </tr>
 
 
-
-
-
             </table>
 
         </div>
 
 
-        <form method=">post
-                </tr>" th:action="@{'/posts/delete/'+${postDto.id}}">
+        <form method=post th:action="@{'/posts/delete/'+${postDto.id}}">
             <div style="text-align: right; position: relative;top: 30px;">
                 <button type="button" onclick="location.href='/posts'">뒤로가기</button>
                 <button th:if="${userDto.id} == ${postDto.user.id}"

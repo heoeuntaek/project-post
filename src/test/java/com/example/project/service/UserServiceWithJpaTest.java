@@ -11,14 +11,14 @@ import java.util.List;
 
 @SpringBootTest
 @Transactional
-class UserServiceTest {
-    @Autowired private UserService userService;
+class UserServiceWithJpaTest {
+    @Autowired private UserServiceWithJpa userServiceWithJpa;
 
     @Test
     void join() {
         User user = new User();
 
-        Long id = userService.join(user);
+        Long id = userServiceWithJpa.join(user);
 
         Assertions.assertThat(id).isEqualTo(2);
     }
@@ -26,9 +26,9 @@ class UserServiceTest {
     @Test
     void findOne() {
         User user = new User();
-        userService.join(user);
+        userServiceWithJpa.join(user);
 
-        User findUser = userService.findById(1L);
+        User findUser = userServiceWithJpa.findById(1L);
 
         Assertions.assertThat(findUser).isEqualTo(user);
     }
@@ -42,12 +42,12 @@ class UserServiceTest {
 
 
         //when
-        userService.join(user1);
-        userService.join(user2);
-        userService.join(user3);
+        userServiceWithJpa.join(user1);
+        userServiceWithJpa.join(user2);
+        userServiceWithJpa.join(user3);
 
         //then
-        List<User> users = userService.getAll();
+        List<User> users = userServiceWithJpa.getAll();
         Assertions.assertThat(users.size()).isEqualTo(4);
 
     }

@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -61,7 +62,7 @@ public class UserController {
         User user = new User(null, userDto.getLoginId(), userDto.getLoginPw(),
                 userDto.getNickName(), null, null);
 
-        userService.join(user);
+        userService.save(user);
         log.info("user join success {}", userDto);
         return "redirect:/";
     }
@@ -69,8 +70,8 @@ public class UserController {
     @ResponseBody
     @GetMapping("/users/{id}")
     public UserDto findById(@PathVariable("id") Long id) {
-        User user = userService.findById(id);
-        UserDto userDto = user.toUserDto(user);
+        Optional<User> user = userService.findById(id);
+        UserDto userDto = user.get().toUserDto();
 
         return userDto;
     }
@@ -79,14 +80,14 @@ public class UserController {
     @GetMapping("/users/loginId/{loginId}")
     public UserDto findByLoginId(@PathVariable("loginId") String loginId) {
         User user = userService.findByLoginId(loginId);
-        UserDto userDto = user.toUserDto(user);
+        UserDto userDto = user.toUserDto();
         return userDto;
     }
 
     @GetMapping("/users")
     public String getUsers(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                            Model model) {
-        List<User> users = userService.getAll();
+        List<User> users = userService.findAll();
         List<UserDto> userDtos = users.stream().
                 map(mapUser -> {
                     UserDto userDto = new UserDto();
@@ -99,7 +100,7 @@ public class UserController {
 
         model.addAttribute("userDtos", userDtos);
 
-        UserDto userDto = user.toUserDto(user);
+        UserDto userDto = user.toUserDto();
         model.addAttribute("userDto", userDto);
         return "user/users";
 
@@ -114,6 +115,7 @@ public class UserController {
         //ID, PW 검증
         //ID Null 아닌지
 
+        log.error("loginDto {}", loginDto);
 
         User loginUser = userService.findByLoginId(loginDto.getLoginId());
         if (loginUser == null) {
@@ -133,7 +135,6 @@ public class UserController {
             return "loginForm";
         }
 
-        log.info("redirectURL {}", redirectURL);
         //로그인 성공 처리
         //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
         HttpSession session = request.getSession();
@@ -167,7 +168,7 @@ public class UserController {
             return "loginForm";
         }
 
-        UserDto userDto = user.toUserDto(user);
+        UserDto userDto = user.toUserDto();
         model.addAttribute("userDto", userDto);
         return "main";
     }
@@ -175,7 +176,7 @@ public class UserController {
 
     @GetMapping("/users/edit")
     public String editUserForm(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user, Model model) {
-        UserDto userDto = user.toUserDto(user);
+        UserDto userDto = user.toUserDto();
         model.addAttribute("userDto", userDto);
 
         return "user/userEditForm";
@@ -185,7 +186,7 @@ public class UserController {
     public String editUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                            @ModelAttribute UserDto userDto) {
 
-        userService.update(userDto, user.getId());
+        userService.modify(userDto);
 
         return "redirect:/";
 
@@ -195,13 +196,15 @@ public class UserController {
     public String deleteUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                              @PathVariable("userId") Long id, Model model) {
         log.error("error");
-        userService.delete(id);
+        userService.deleteById(id);
 
-        UserDto userDto = user.toUserDto(user);
+        UserDto userDto = user.toUserDto();
         model.addAttribute("userDto", userDto);
         return "redirect:/users";
 
 
     }
+
+
 }
 
