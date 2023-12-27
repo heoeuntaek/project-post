@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+    <script src="index.js"></script>
+</head>
+<style>
+
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+</style>
+<body>
+
+<div style="margin-top: 200px;  text-align: center;">
+    <h1>친구추가</h1>
+</div>
+
+<form action="/friends" role="form" th:object="${friendDto}" method="post">
+
+    <!--    글로벌 에러-->
+    <div style="text-align: center" th:if="${#fields.hasGlobalErrors()}">
+        <p class="field-error" th:each="error : ${#fields.globalErrors()}" th:text="${error}">글로벌 오류 메시지</p>
+    </div>
+
+    <!--    필드 에러-->
+    <div style="text-align: center;">
+        <p class="login">
+            친구 아이디 <input type="text" th:field="${friendDto.loginId}">
+        </p>
+        <div class="field-error" th:errors="${friendDto.loginId}">
+            없는 아이디 입니다
+        </div>
+
+    </div>
+
+    <div style="text-align: center;">
+        <input type="submit" value="친구추가"> </input>
+        <button type="button" onclick="location.href='/friends'">뒤로가기</button>
+
+    </div>
+</form>
+
+
+</body>
+</html>

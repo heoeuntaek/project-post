@@ -30,4 +30,5 @@ public class PostDto {
     private String filePath;
 
     private List<Comment> comments = new ArrayList<>();
+    private int viewCount;
 }

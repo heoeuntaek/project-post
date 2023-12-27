@@ -18,10 +18,11 @@
 <div>
     <table style="margin-left:auto;margin-right:auto;">
         <tr>
-            <th width="70px">no</th>
-            <th width="150px">user</th>
-            <th width="300px">title</th>
-            <th width="150px">time</th>
+            <th width="70px">번호</th>
+            <th width="150px">닉네임</th>
+            <th width="300px">제목</th>
+            <th width="150px">조회수</th>
+            <th width="150px">시간</th>
         </tr>
         <tr th:each="post : ${postDtos}">
             <th th:text="${post.id}">no</th>
@@ -29,6 +30,7 @@
             <th style="text-decoration: underline;">
                 <a th:href="@{/posts/{postId}(postId = ${post.id})}" th:text="${post.title}">제목</a>
             </th>
+            <th th:text="${post.viewCount}"></th>
             <th th:text="${#temporals.format(post.getTime(), 'yyyy-MM-dd HH:mm')}"> 2023.11.24</th>
 
         </tr>

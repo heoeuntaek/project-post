@@ -1,9 +1,12 @@
 package com.example.project.controller;
 
 import com.example.project.SessionConst;
+import com.example.project.domain.Friend;
 import com.example.project.domain.User;
+import com.example.project.dto.FriendDto;
 import com.example.project.dto.LoginDto;
 import com.example.project.dto.UserDto;
+import com.example.project.service.FriendService;
 import com.example.project.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -16,7 +19,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserService userService;
+    private final FriendService friendService;
 
 
     //    @RequiredArgsConstructor 가 아래 생략함
@@ -60,7 +63,7 @@ public class UserController {
 
 
         User user = new User(null, userDto.getLoginId(), userDto.getLoginPw(),
-                userDto.getNickName(), null, null);
+                userDto.getNickName(), null, null, null);
 
         userService.save(user);
         log.info("user join success {}", userDto);
@@ -70,8 +73,8 @@ public class UserController {
     @ResponseBody
     @GetMapping("/users/{id}")
     public UserDto findById(@PathVariable("id") Long id) {
-        Optional<User> user = userService.findById(id);
-        UserDto userDto = user.get().toUserDto();
+        User user = userService.findById(id);
+        UserDto userDto = user.toUserDto();
 
         return userDto;
     }
@@ -137,11 +140,11 @@ public class UserController {
 
         //로그인 성공 처리
         //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         //세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginUser);
 
-        log.error("redirectURL ={}",redirectURL);
+        log.error("redirectURL ={}", redirectURL);
         return "redirect:/" + redirectURL;
 //        return "redirect:" + redirectURL;
 
@@ -168,7 +171,8 @@ public class UserController {
             return "loginForm";
         }
 
-        UserDto userDto = user.toUserDto();
+        User findUser = userService.findById(user.getId());
+        UserDto userDto = findUser.toUserDto();
         model.addAttribute("userDto", userDto);
         return "main";
     }
@@ -182,11 +186,13 @@ public class UserController {
         return "user/userEditForm";
     }
 
+    //회원수정
     @PostMapping("/users/edit")
     public String editUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                            @ModelAttribute UserDto userDto) {
 
-        userService.modify(userDto);
+        userDto.setId(user.getId());
+        userService.update(userDto);
 
         return "redirect:/";
 
@@ -195,7 +201,6 @@ public class UserController {
     @GetMapping("/users/delete/{userId}")
     public String deleteUser(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                              @PathVariable("userId") Long id, Model model) {
-        log.error("error");
         userService.deleteById(id);
 
         UserDto userDto = user.toUserDto();
@@ -205,6 +210,74 @@ public class UserController {
 
     }
 
+    //친구추가 폼
+    @GetMapping("/friends/form")
+    public String saveFriend(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                             Model model) {
+        model.addAttribute("friendDto", new FriendDto());
+        return "friend/friendForm";
+    }
 
+    //친구추가
+    @PostMapping("/friends")
+    public String saveFriend(@Validated @ModelAttribute FriendDto friendDto, BindingResult bindingResult,
+                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user) {
+
+        Friend friend = friendDto.toEntity();
+        User friendUser = userService.findByLoginId(friend.getLoginId());
+        if (friendUser == null) {
+            bindingResult.reject("id", "친구 아이디가 조회되지 않습니다");
+        }
+
+        User findUser = userService.findById(user.getId());
+        if (friendUser == findUser) {
+            bindingResult.reject("id", "자기 자신은 영원한 친구입니다");
+        }
+
+        if (bindingResult.hasErrors()) {
+            log.error("err {}", bindingResult);
+            return "friend/friendForm";
+        }
+
+        friendService.save(user, friend);
+        return "redirect:/friends";
+    }
+
+    //친구 조회
+    @GetMapping("/friends/{friendId}")
+    public String findFriend(@PathVariable("friendId") Long friendId, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                             Model model) {
+        Friend friend = friendService.findById(friendId);
+
+        model.addAttribute("friend", friend);
+
+        return "findFriend";
+    }
+
+    //친구들 조회
+    @GetMapping("/friends")
+    public String findFriends(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                              Model model) {
+
+        User findUser = userService.findById(user.getId());
+        List<Friend> friends = findUser.getFriends();
+        model.addAttribute("friends", friends);
+
+        UserDto userDto = findUser.toUserDto();
+        model.addAttribute("userDto", userDto);
+
+        return "friend/friends";
+    }
+
+    //친구 삭제
+
+    @GetMapping("/friends/delete/{friendId}")
+    public String deleteFriend(@PathVariable("friendId") Long friendId, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
+                               Model model) {
+        friendService.deleteById(user, friendId);
+
+
+        return "redirect:/friends";
+    }
 }
 

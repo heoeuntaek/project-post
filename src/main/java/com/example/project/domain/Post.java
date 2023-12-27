@@ -11,9 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jakarta.persistence.FetchType.EAGER;
-import static jakarta.persistence.FetchType.LAZY;
-
 @Table
 @Entity
 @NoArgsConstructor
@@ -36,12 +33,17 @@ public class Post {
     private String fileName;
     private String filePath;
 
+    private int viewCount;
 
-    @ManyToOne(fetch = LAZY)
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post", fetch = EAGER)
+    @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
 
 
@@ -80,6 +82,7 @@ public class Post {
         postDto.setFilePath(this.getFilePath());
         postDto.setFileName(this.getFileName());
         postDto.setComments(this.getComments());
+        postDto.setViewCount(this.viewCount);
 
         return postDto;
 

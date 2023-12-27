@@ -26,5 +26,20 @@ public class WebConfig implements WebMvcConfigurer {
                         "/css/**", "/*.ico", "/error", "/js/**", "/users/new");
     }
 
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/profile").permitAll()
+//                .requestMatchers("/api/**").hasRole(Role.USER.name())
+//                .anyRequest().authenticated().and()
+//                .logout().logoutSuccessUrl("/").and()
+//                .oauth2Login()
+//                .userInfoEndpoint()
+//                .userService(userService);
+//
+//        return http.build();
+//    }
+
 
 }

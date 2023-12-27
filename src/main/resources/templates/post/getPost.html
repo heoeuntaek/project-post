@@ -19,13 +19,29 @@
             <table>
                 <tbody>
                 <tr class="table">
-                    <td th:text="'작성자 : '+${userDto.nickName}">작성자</td>
-                    <td th:text="'작성일자 : '+${#temporals.format(postDto.time, 'yyyy-MM-dd HH:mm')}">작성일</td>
+                    <td th:text="'닉네임 : '+${postDto.getUser().nickName}"></td>
+                    <td>
+                        <script th:inline="javascript">
+                            /*<![CDATA[*/
+                            var nickName = [[${postDto.user.nickName}]]
+                            var userId = [[${postDto.user.id}]]
+                            var loginId = [[${postDto.user.loginId}]]
+                            console.log("userJson = " + userId);
+                            /*]]>*/
+                        </script>
+                        <button type="button" onclick="confirmFriend(nickName,userId,loginId)">친구추가</button>
 
+                        <!--                                                <button type="button" onclick="javascript:confirmFriend(${postDto.user})">친구추가</button>-->
 
-                    <td th:text="'조회수 :'">조회</td>
+                    </td>
+                    <td th:text="
+                        '작성일자 : '+${#temporals.format(postDto.time, 'yyyy-MM-dd HH:mm')}">작성일
+                    </td>
+                    <td th:text="'조회수 :'+${postDto.viewCount}">조회</td>
                 </tr>
                 </tbody>
+
+
             </table>
         </div>
 
@@ -81,6 +97,39 @@
 
 
 </div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function confirmFriend(nickName, userId, loginId) {
+        console.log("nickName= " + nickName);
+        console.log("userId= " + userId);
+        console.log("loginId= " + loginId);
+
+        isConfirm = confirm(nickName + '님을 친구 추가하시겠습니까?');
+        if (isConfirm) {
+            var form = document.createElement("form");
+
+            form.setAttribute("charset", "UTF-8");
+            form.setAttribute("method", "Post");  //Post 방식
+            form.setAttribute("action", `/friends`); //요청 보낼 주소
+
+
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "loginId");
+            hiddenField.setAttribute("value", loginId);
+
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+
+            form.submit();
+            // window.location.href = `/friends`;
+        }
+    }
+
+    jpa
+    /*]]>*/
+</script>
+
 
 </body>
 </html>

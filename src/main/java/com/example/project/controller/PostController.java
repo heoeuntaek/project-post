@@ -56,7 +56,7 @@ public class PostController {
         }
 
         Post post = new Post(null, postDto.getTitle(), postDto.getContent(), null,
-                LocalDateTime.now(), null, null, null, null);
+                LocalDateTime.now(), null, null, 0,null, null);
         post.setUser(user);
 
         postService.add(post, file);
@@ -69,6 +69,7 @@ public class PostController {
                          @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user) {
 
         Post post = postService.findById(postId);
+        postService.addViewCount(postId);
         PostDto postDto = post.toDto();
         model.addAttribute("postDto", postDto);
 
@@ -149,7 +150,7 @@ public class PostController {
                            Model model, @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Post> posts = postService.getAll(pageable);
 
-        int nowPage = posts.getPageable().getPageNumber()+1 ; //처음 페이지가 0
+        int nowPage = posts.getPageable().getPageNumber() + 1; //처음 페이지가 0
         int startPage = nowPage;
         int endPage = Math.min(nowPage + 5, posts.getTotalPages());
 
@@ -173,6 +174,8 @@ public class PostController {
     @PostMapping("/posts/delete/{postId}")
     public String deletePost(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User user,
                              @PathVariable("postId") Long postId) {
+        Post post = postService.findById(postId);
+        user.getPosts().remove(post);
         postService.deleteById(postId);
         return "redirect:/posts";
     }
@@ -217,6 +220,10 @@ public class PostController {
         fileInputStream.close();
         outputStream.close();
     }
+
+    //조회수 기@GetMapping("/posts/{postId}")
+
+//    닉네임 눌러서 친구추가
 
 
 }
