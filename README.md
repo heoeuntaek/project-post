@@ -41,9 +41,9 @@
 게시판 추가, 수정 구현
 회원 관리 구현(수정)
 게시판 삭제 구현
-UserController에서  return "main" 하면 css 적용 안됨 - css경로에 static 없애서 해결
+UserController에서  return "main" 하면 css 적용 안됨 - css경로에 static 없애서 해결 <br>
 
-  <br>
+
 
 231218
 관리자 페이지 - 회원 삭제 구현
