@@ -3,7 +3,7 @@
 
 **기간** 2023.12.15~
 
-<br/>
+
 **기능**
 1. `Spring Data JPA` ,`MySQL` 활용해 CRUD 구현
 2. `BindingResult` ,`@Validated`  활용해 로그인, 회원가입 구현
@@ -11,7 +11,8 @@
 4. `Pageable` 활용해 게시판 페이징 구현
 5. `Thymeleaf` 활용해 HTML 동적 렌더링
 6. 관리자 페이지 구현(타 회원, 게시물, 댓글 삭제 가능)
-<br/>
+
+<br> <br> <br>
 
 **예정기능 **
 1. 채팅기능
