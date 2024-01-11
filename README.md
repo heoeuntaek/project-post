@@ -5,25 +5,25 @@
 
 
 **기능**
-1. `BindingResult` ,`@Validated` 를 활용해 로그인, 회원가입 구현
-2. `Interceptor` , `@SessionAttribute` 를 활용해 로그인 검증
-3. `JPA` ,`MySQL`를 활용해 데이터 CRUD 구현
-4. `Thymeleaf` 를 활용해 HTML 동적 렌더링
-5. 관리자 페이지 구현(타 회원, 게시물, 댓글 삭제 가능)
+1. `Spring Data JPA` ,`MySQL` 활용해 CRUD 구현
+2. `BindingResult` ,`@Validated`  활용해 로그인, 회원가입 구현
+3. `Interceptor` , `@SessionAttribute`  활용해 로그인 검증
+4. `Pageable` 활용해 게시판 페이징 구현
+5. `Thymeleaf` 활용해 HTML 동적 렌더링
+6. 관리자 페이지 구현(타 회원, 게시물, 댓글 삭제 가능)
 
 **예정기능 **
-1. 게시판 조회수 기능 구현
-2. 구글 로그인 구현
+1. 채팅기능
 
-**배운점**
-1. `indingResult` 활용
+**배운것**
+1. `BindingResult` 활용
 2. `Interceptor` 활용
 3. `Thymeleaf`  활용
-4. `AssertJ` 를 활용해 Test코드 작성
+4. `Junit`를 활용해 Test코드 작성
 
 **느낀점**
-1. 코드를 구현하는 시간이 2라면, 오류를 디버깅하고 해결하는 데 8이 걸렸다. 이를 통해 테스트 코드를 작성의 필요성을 느꼈다.
-2. 내가 겪은 대부분의 오류는 대소문자, 알파벳 1글자 차이 등 매우 단순한 오류들이었습니다. 이러한 실수를 방지하기 위해 코드를 작성할 때 세부적으로, 주의 깊게 하나하나 생각하면서 짜면 좋겠다는 생각이 들었다.
+1. 코드를 작성하는 데 2시간이 소요되었지만, 오류를 디버깅하고 해결하는 데 8시간이 걸렸다. 이 경험을 통해 테스트 코드 작성의 중요성을 더욱 강하게 느끼게 되었다.
+2. 내가 경험한 대부분의 오류는 대소문자를 잘못 사용하거나 알파벳 한 글자를 잘못 쓰는 등 매우 단순한 실수들이었다. 이러한 실수를 방지하기 위해 코드를 작성할 때 세부적인 부분에도 주의를 기울여야겠다는 생각이 들었다.
 
 ![1login](https://github.com/heoeuntaek/project-post/assets/80875005/1c4ea3e5-9878-466d-80ed-4fdd235864d1)
 ![회원가입2](https://github.com/heoeuntaek/project-post/assets/80875005/ba312ce5-b0b5-42ce-b1ae-d2125a8cf15f)
@@ -62,5 +62,16 @@ UserController에서  return "main" 하면 css 적용 안됨 - css경로에 stat
 JPA 에서 Spring Data jpa로 변경
 페이징구현
 
+231221
+JPA 에서 Spring Data jpa로 변경
+페이징구현
+게시판 조회수 기능
 
 
+231222
+ID로 친구추가 구현
+친구조회 구현
+친구삭제 구현
+
+231224
+게시판에서 친구 추가 구현
