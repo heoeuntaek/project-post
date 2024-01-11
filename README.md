@@ -25,15 +25,6 @@
 1. 코드를 작성하는 데 2시간이 소요되었지만, 오류를 디버깅하고 해결하는 데 8시간이 걸렸다. 이 경험을 통해 테스트 코드 작성의 중요성을 더욱 강하게 느끼게 되었다.
 2. 내가 경험한 대부분의 오류는 대소문자를 잘못 사용하거나 알파벳 한 글자를 잘못 쓰는 등 매우 단순한 실수들이었다. 이러한 실수를 방지하기 위해 코드를 작성할 때 세부적인 부분에도 주의를 기울여야겠다는 생각이 들었다.
 
-![1login](https://github.com/heoeuntaek/project-post/assets/80875005/1c4ea3e5-9878-466d-80ed-4fdd235864d1)
-![회원가입2](https://github.com/heoeuntaek/project-post/assets/80875005/ba312ce5-b0b5-42ce-b1ae-d2125a8cf15f)
-![메인3](https://github.com/heoeuntaek/project-post/assets/80875005/83c9d753-c03b-4ebd-92d5-94d36310da5e)
-![게시판 글쓰기4](https://github.com/heoeuntaek/project-post/assets/80875005/e0bdd44e-5558-4dad-93aa-abc0c62d29df)
-![게시판리스트](https://github.com/heoeuntaek/project-post/assets/80875005/4a4a96ed-8ddf-4b35-b3a8-f60da6497ce5)
-![게시판조회6](https://github.com/heoeuntaek/project-post/assets/80875005/2cf53274-63b4-47a0-a576-5be341e6fe5a)
-![회원수정7](https://github.com/heoeuntaek/project-post/assets/80875005/87ba1c69-7184-44fb-b35d-3c5ebc7a83ef)
-![관리자 페이지8](https://github.com/heoeuntaek/project-post/assets/80875005/fecf4842-62f1-442d-b205-592035d39d61)
-
 231215
 로그인 세션 구현
 
@@ -67,7 +58,6 @@ JPA 에서 Spring Data jpa로 변경
 페이징구현
 게시판 조회수 기능
 
-
 231222
 ID로 친구추가 구현
 친구조회 구현
@@ -75,3 +65,29 @@ ID로 친구추가 구현
 
 231224
 게시판에서 친구 추가 구현
+
+로그인
+![1login](https://github.com/heoeuntaek/project-post/assets/80875005/1c4ea3e5-9878-466d-80ed-4fdd235864d1)
+
+회원가입
+![회원가입2](https://github.com/heoeuntaek/project-post/assets/80875005/ba312ce5-b0b5-42ce-b1ae-d2125a8cf15f)
+
+메인화면
+![메인3](https://github.com/heoeuntaek/project-post/assets/80875005/83c9d753-c03b-4ebd-92d5-94d36310da5e)
+
+게시판 글쓰기
+![게시판 글쓰기4](https://github.com/heoeuntaek/project-post/assets/80875005/e0bdd44e-5558-4dad-93aa-abc0c62d29df)
+
+게시판 리스트
+![게시판리스트](https://github.com/heoeuntaek/project-post/assets/80875005/4a4a96ed-8ddf-4b35-b3a8-f60da6497ce5)
+
+게시판 조회
+![게시판조회6](https://github.com/heoeuntaek/project-post/assets/80875005/2cf53274-63b4-47a0-a576-5be341e6fe5a)
+
+회원 수정
+![회원수정7](https://github.com/heoeuntaek/project-post/assets/80875005/87ba1c69-7184-44fb-b35d-3c5ebc7a83ef)
+
+관리자 페이지
+![관리자 페이지8](https://github.com/heoeuntaek/project-post/assets/80875005/fecf4842-62f1-442d-b205-592035d39d61)
+
+
