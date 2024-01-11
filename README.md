@@ -4,7 +4,7 @@
 <br>
 
 **기간** 2023.12.15~
-<br>
+<br> <br>
 
 **기능**
 1. `Spring Data JPA` ,`MySQL` 활용해 CRUD 구현
@@ -101,7 +101,7 @@ ID로 친구추가 구현
 게시판 리스트
 ![게시판리스트](https://github.com/heoeuntaek/project-post/assets/80875005/4a4a96ed-8ddf-4b35-b3a8-f60da6497ce5)
 
-  <br>
+<br>
 게시판 조회
 ![게시판조회6](https://github.com/heoeuntaek/project-post/assets/80875005/2cf53274-63b4-47a0-a576-5be341e6fe5a)
 <br>
