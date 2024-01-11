@@ -100,14 +100,17 @@ ID로 친구추가 구현
 ![게시판리스트](https://github.com/heoeuntaek/project-post/assets/80875005/4a4a96ed-8ddf-4b35-b3a8-f60da6497ce5)
 
 <br>
+
 게시판 조회
 ![게시판조회6](https://github.com/heoeuntaek/project-post/assets/80875005/2cf53274-63b4-47a0-a576-5be341e6fe5a)
+
 <br>
   
 회원 수정
 ![회원수정7](https://github.com/heoeuntaek/project-post/assets/80875005/87ba1c69-7184-44fb-b35d-3c5ebc7a83ef)
 
-  <br>
+<br>
+
 관리자 페이지
 ![관리자 페이지8](https://github.com/heoeuntaek/project-post/assets/80875005/fecf4842-62f1-442d-b205-592035d39d61)
 
