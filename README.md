@@ -11,7 +11,6 @@
 2. `BindingResult` ,`@Validated`  활용해 로그인, 회원가입 구현
 3. `Interceptor` , `@SessionAttribute`  활용해 로그인 검증
 4. `Pageable` 활용해 게시판 페이징 구현
-5. `Thymeleaf` 활용해 HTML 동적 렌더링
 6. 관리자 페이지 구현(타 회원, 게시물, 댓글 삭제 가능)
 
 <br>
@@ -21,10 +20,8 @@
 <br>
   
 **배운것**
-1. `BindingResult` 활용
-2. `Interceptor` 활용
-3. `Thymeleaf`  활용
-4. `Junit`를 활용해 Test코드 작성
+1. `Junit`를 활용해 Unit / Integration Test코드 작성
+2. `Thymeleaf` 활용
 <br>
   
 **느낀점**
